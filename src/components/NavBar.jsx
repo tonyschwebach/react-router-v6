@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Outlet, NavLink } from "react-router-dom";
 
-function TabPanel(props) {
+export function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -41,14 +41,44 @@ export default function VerticalTabs() {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: "divider" }}
       >
-        <NavLink to="/home">
+        <NavLink
+          to="/home"
+          // style={{ textDecoration: "none" }}
+          style={({ isActive }) => ({ backgroundColor: isActive? "red" :"inherit"})}
+          className={({ isActive }) =>
+            isActive
+              ? ".Mui-selected .MuiTab-textColorInherit"
+              : ".MuiTab-textColorInherit"
+          }
+        >
           <Tab label="Home" />
         </NavLink>
-        <NavLink to="/books">
+        <NavLink
+          to="/books"
+          style={({ isActive }) => ({ backgroundColor: isActive? "red" :"inherit"})}
+          // style={{ textDecoration: "none" }}
+          className={({ isActive }) =>
+            isActive
+              ? ".Mui-selected .MuiTab-textColorInherit"
+              : ".MuiTab-textColorInherit"
+          }
+        >
           <Tab label="Books" />
         </NavLink>
-        <NavLink to="/authors">
-          <Tab label="Authors" />
+        <NavLink
+          to="/authors"
+          // style={{ textDecoration: "none" }}
+          style={({ isActive }) => ({ backgroundColor: isActive? "red" :"inherit"})}
+
+          className={({ isActive }) =>
+            isActive
+              ? ".Mui-selected .MuiTab-textColorInherit"
+              : ".MuiTab-textColorInherit"
+          }
+        >
+          <Tab label="Authors" 
+          
+          />
         </NavLink>
       </Tabs>
       <TabPanel value={value} index={0}>

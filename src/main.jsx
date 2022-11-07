@@ -7,21 +7,35 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import "./index.css";
+// import "./index.css";
 
 /* existing imports */
-import Layout from "./pages/Layout.jsx";
+import Layout from "./components/Layout.jsx";
 import ErrorPage from "./routes/error-page";
 import Home from "./pages/Home";
 import Books from "./pages/Books";
+import Book from "./components/Book";
+import Genres from "./components/Genres";
+
 import Authors from "./pages/Authors";
 
 import Index from "./routes";
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout/>} errorElement={<ErrorPage />}>
-      <Route index path="home" element={<Home />} />
-      <Route path="books" element={<Books />} />
+    <Route path="/" element={<Layout />}
+    //  errorElement={<ErrorPage />}
+     >
+      <Route index element={<Home />} />
+      <Route path="home" element={<Home />} />
+      <Route path="books" element={<Books />}>
+        <Route index element={<Genres />} />
+
+        <Route path=":genre" element={<Genres />}>
+        {/* <Route index element={<Genres />} /> */}
+
+          <Route path=":title" element={<Book />} />
+        </Route>
+      </Route>
       <Route path="authors" element={<Authors />} />
     </Route>
   )
